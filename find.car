@@ -1,0 +1,12 @@
+transport = input("what is your transport  ")
+match transport:
+    case "bmw":
+        print("This is a BMW car.")
+    case "audi":
+        print("This is an Audi car.")    
+    case "gentra":
+        print("bu uzb mashina")
+    case "skuter" :
+        print("bu mashina emas")   
+    case _:
+        print ( "bunday transport royhatda yoq" )    
