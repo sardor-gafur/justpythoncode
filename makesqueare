@@ -1,0 +1,26 @@
+def main():
+
+     print_square(4)
+
+
+
+
+
+def print_square(size):
+
+     for i in (size):
+
+        print_row (size)
+
+
+
+
+
+def print_row(5):
+
+      print ("#" * 5)
+
+
+
+main()
+
