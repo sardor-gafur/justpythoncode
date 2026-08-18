@@ -1,0 +1,56 @@
+import random
+import string
+
+
+def generate_password(length=12):
+    """Generates a random secure password."""
+    if length < 8:
+        raise ValueError("Password length should be at least 8 characters.")
+
+    # Define character pools
+    lowers = string.ascii_lowercase
+    uppers = string.ascii_uppercase
+    digits = string.digits
+    symbols = "!@#$%^&*()-_=+"
+
+    # Ensure password contains at least one of each character type
+    password = [
+        random.choice(lowers),
+        random.choice(uppers),
+        random.choice(digits),
+        random.choice(symbols),
+    ]
+
+    # Fill the rest with random choices from all pools combined
+    all_chars = lowers + uppers + digits + symbols
+    password += [random.choice(all_chars) for _ in range(length - 4)]
+
+    # Shuffle to make the order unpredictable
+    random.shuffle(password)
+
+    return "".join(password)
+
+
+def save_password_to_file(service, password, filename="passwords.txt"):
+    """Saves the generated password to a file."""
+    with open(filename, "a") as file:
+        file.write(f"Service: {service} | Password: {password}\n")
+    print(f"Password for '{service}' saved to '{filename}' successfully.")
+
+
+# Main Execution
+if __name__ == "__main__":
+    service_name = input("Enter the service name (e.g., Email, Netflix): ")
+    pass_length = int(
+        input("Enter desired password length (minimum 8): ") or 12
+    )
+
+    new_password = generate_password(pass_length)
+
+    print("\n--- Generated Password ---")
+    print(f"Password: {new_password}")
+    print("--------------------------\n")
+
+    save_choice = input("Do you want to save this password? (y/n): ").lower()
+    if save_choice == "y":
+        save_password_to_file(service_name, new_password)
