@@ -1,0 +1,53 @@
+import random
+
+print("=" * 40)
+print("       SON TOPISH O'YINI")
+print("=" * 40)
+
+score = 0
+
+while True:
+    secret_number = random.randint(1, 100)
+    attempts = 7
+
+    print("\nMen 1 dan 100 gacha son o'yladim.")
+    print(f"Sizda {attempts} ta urinish bor.")
+
+    while attempts > 0:
+        try:
+            guess = int(input("\nSonni kiriting: "))
+
+            if guess < 1 or guess > 100:
+                print("❌ 1 dan 100 gacha son kiriting!")
+                continue
+
+            attempts -= 1
+
+            if guess == secret_number:
+                print("🎉 To'g'ri topdingiz!")
+                score += 1
+                print(f"🏆 Joriy ball: {score}")
+                break
+
+            elif guess < secret_number:
+                print("📈 Men o'ylagan son bundan kattaroq.")
+
+            else:
+                print("📉 Men o'ylagan son bundan kichikroq.")
+
+            print(f"Qolgan urinish: {attempts}")
+
+        except ValueError:
+            print("❌ Faqat raqam kiriting!")
+
+    else:
+        print(f"\n😔 Yutqazdingiz!")
+        print(f"Men o'ylagan son: {secret_number}")
+        print(f"🏆 Ballingiz: {score}")
+
+    again = input("\nYana o'ynaysizmi? (ha/yo'q): ").lower()
+
+    if again != "ha":
+        print("\nO'yin tugadi!")
+        print(f"Yakuniy ballingiz: {score}")
+        break
